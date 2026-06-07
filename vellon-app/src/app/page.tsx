@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Camera, Share2, Download, Shield, Clock, Heart } from 'lucide-react'
+import { ArrowRight, Camera, Share2, Download } from 'lucide-react'
 import Link from 'next/link'
 
 const easing = [0.16, 1, 0.3, 1] as const
@@ -29,7 +29,7 @@ export default function Home() {
             className="font-serif text-5xl md:text-7xl lg:text-8xl text-[#F8FAFC] mb-6 leading-tight tracking-tight"
             style={{ letterSpacing: '-0.02em' }}
           >
-            Never Miss a Memory
+            Every angle, one gallery.
           </motion.h1>
 
           <motion.p
@@ -38,7 +38,7 @@ export default function Home() {
             transition={{ duration: 0.4, delay: 0.1, ease: easing }}
             className="text-lg md:text-xl text-[#F8FAFC]/80 mb-8 max-w-2xl mx-auto font-sans"
           >
-            Premium event photo galleries. One price. Every moment.
+            The premium, app-free photo sharing service. Gather every perspective of your celebration in one beautifully organized, live-updating collection.
           </motion.p>
 
           <motion.div
@@ -51,21 +51,60 @@ export default function Home() {
               href="/register"
               className="group relative inline-flex items-center justify-center min-h-12 px-8 py-3 text-base font-medium text-[#020617] bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-lg overflow-hidden transition-all hover:scale-105 active:scale-95"
             >
-              <span className="relative z-10">Get Started</span>
+              <span className="relative z-10">Start Your Free Trial</span>
               <ArrowRight className="ml-2 h-5 w-5 relative z-10" />
-            </Link>
-            <Link
-              href="/login"
-              className="inline-flex items-center justify-center min-h-12 px-8 py-3 text-base font-medium text-[#F8FAFC] border border-[#D4AF37]/30 rounded-lg hover:bg-[#D4AF37]/10 transition-all active:scale-95"
-            >
-              Sign In
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* How It Works */}
+      {/* The Vellon Difference */}
       <section className="py-24 px-4 bg-[#020617]">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: easing }}
+            className="font-serif text-4xl md:text-5xl text-[#F8FAFC] text-center mb-16"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            The Vellon Difference
+          </motion.h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                title: 'No Apps, No Friction.',
+                description: 'Your guests don\'t need to download anything. They scan your QR code and start capturing. It\'s that simple.',
+              },
+              {
+                title: 'Your Event, Curated.',
+                description: 'Stop chasing friends for photos on Messenger. Get every guest\'s perspective delivered to one, elegant, live-updating gallery.',
+              },
+              {
+                title: 'Sophisticated Keepsake.',
+                description: 'A high-end digital experience that matches the elegance of your wedding or celebration.',
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1, ease: easing }}
+                className="bg-[#020617]/50 border border-[#D4AF37]/20 rounded-2xl p-8 backdrop-blur-sm"
+              >
+                <h3 className="font-serif text-2xl text-[#F8FAFC] mb-4">{feature.title}</h3>
+                <p className="text-[#F8FAFC]/70 font-sans leading-relaxed">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-24 px-4 bg-[#020617]/50">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -82,18 +121,18 @@ export default function Home() {
             {[
               {
                 icon: Camera,
-                title: 'Create Event',
-                description: 'Generate a unique event code in seconds. No setup required.',
+                title: 'Generate',
+                description: 'Create your Vellon event and get your unique QR code instantly.',
               },
               {
                 icon: Share2,
-                title: 'Share Code',
-                description: 'Guests scan the QR code or enter the code to upload photos.',
+                title: 'Display',
+                description: 'Print your QR codes and place them at your tables or invite guests via link.',
               },
               {
                 icon: Download,
-                title: 'Collect Photos',
-                description: 'All photos in one beautiful gallery. Download everything at once.',
+                title: 'Gather',
+                description: 'Watch your gallery come to life in real-time as guests upload their favorite shots.',
               },
             ].map((step, i) => (
               <motion.div
@@ -115,48 +154,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-24 px-4 bg-[#020617]/50">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, ease: easing }}
-            className="font-serif text-4xl md:text-5xl text-[#F8FAFC] text-center mb-16"
-            style={{ letterSpacing: '-0.02em' }}
-          >
-            Why Vellon?
-          </motion.h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { icon: Shield, title: 'Secure Storage', description: 'Your photos are encrypted and stored securely.' },
-              { icon: Clock, title: '15-Day Gallery', description: 'Perfect for events. Auto-purge after 15 days.' },
-              { icon: Heart, title: 'Branded Experience', description: 'Elegant navy and gold theme for your special moments.' },
-            ].map((feature, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1, ease: easing }}
-                className="flex items-start gap-4 p-6"
-              >
-                <div className="w-10 h-10 bg-[#D4AF37]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <feature.icon className="h-5 w-5 text-[#D4AF37]" />
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl text-[#F8FAFC] mb-2">{feature.title}</h3>
-                  <p className="text-[#F8FAFC]/70 font-sans text-sm">{feature.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing CTA */}
+      {/* Pricing */}
       <section className="py-24 px-4 bg-[#020617]">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -166,25 +164,63 @@ export default function Home() {
             transition={{ duration: 0.4, ease: easing }}
             className="bg-gradient-to-br from-[#D4AF37]/20 to-[#D4AF37]/5 border border-[#D4AF37]/30 rounded-3xl p-12 backdrop-blur-sm"
           >
-            <h2 className="font-serif text-4xl md:text-5xl text-[#F8FAFC] mb-4" style={{ letterSpacing: '-0.02em' }}>
-              One Price. Every Moment.
+            <h2 className="font-serif text-3xl md:text-4xl text-[#F8FAFC] mb-4" style={{ letterSpacing: '-0.02em' }}>
+              Simplicity at its best.
             </h2>
-            <p className="text-5xl md:text-6xl font-serif text-[#D4AF37] mb-6">₱699</p>
-            <p className="text-[#F8FAFC]/70 mb-8 font-sans">For 15 days of seamless memory gathering.</p>
+            <p className="text-[#F8FAFC]/70 mb-6 font-sans">One price. Unlimited uploads. 15-day gallery access.</p>
+            <p className="text-6xl md:text-7xl font-serif text-[#D4AF37] mb-4">₱699</p>
+            <p className="text-[#F8FAFC]/70 mb-8 font-sans">One-time fee for the entire event. No hidden costs, no tiered plans.</p>
             <Link
               href="/register"
               className="inline-flex items-center justify-center min-h-12 px-8 py-3 text-base font-medium text-[#020617] bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-lg transition-all hover:scale-105 active:scale-95"
             >
-              Start Your Gallery
+              Start Your Free Trial
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 bg-[#020617] border-t border-[#D4AF37]/20">
+      <footer className="py-16 px-4 bg-[#020617] border-t border-[#D4AF37]/20">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-[#F8FAFC]/50 font-sans text-sm">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, ease: easing }}
+            className="font-serif text-3xl md:text-4xl text-[#F8FAFC] mb-8"
+            style={{ letterSpacing: '-0.02em' }}
+          >
+            Elevate your event.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1, ease: easing }}
+            className="mb-8"
+          >
+            <Link
+              href="/register"
+              className="inline-flex items-center justify-center min-h-12 px-8 py-3 text-base font-medium text-[#020617] bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-lg transition-all hover:scale-105 active:scale-95"
+            >
+              Start Your Free Trial
+            </Link>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2, ease: easing }}
+            className="flex items-center justify-center gap-6 text-[#F8FAFC]/50 font-sans text-sm"
+          >
+            <Link href="#" className="hover:text-[#D4AF37] transition-colors">FAQ</Link>
+            <span>•</span>
+            <Link href="#" className="hover:text-[#D4AF37] transition-colors">Terms of Service</Link>
+            <span>•</span>
+            <Link href="#" className="hover:text-[#D4AF37] transition-colors">Contact</Link>
+          </motion.div>
+          <p className="text-[#F8FAFC]/30 font-sans text-sm mt-8">
             © 2024 Vellon.photos. All rights reserved.
           </p>
         </div>

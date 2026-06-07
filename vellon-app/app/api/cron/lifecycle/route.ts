@@ -2,9 +2,8 @@ import { createServiceClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function GET(request: Request) {
+  const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
   const authHeader = request.headers.get("authorization");
   const cronSecret = process.env.CRON_SECRET;
 
@@ -27,7 +26,7 @@ export async function GET(request: Request) {
       .eq("id", item.event_id)
       .single();
 
-    if (!event || !process.env.RESEND_API_KEY) continue;
+    if (!event || !resend) continue;
 
     const hostEmail = (event.profiles as { email: string; name: string | null } | null)?.email;
     const hostName = (event.profiles as { email: string; name: string | null } | null)?.name ?? "there";

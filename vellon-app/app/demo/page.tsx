@@ -4,12 +4,12 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Masonry from "react-masonry-css";
 import Link from "next/link";
-import { Camera, X, ZoomIn, Info, CheckCircle, Upload, Send, ArrowLeft } from "lucide-react";
+import { Camera, X, ZoomIn, Info, CheckCircle, Upload, Send, ArrowLeft, Sparkles } from "lucide-react";
 const DEMO_EVENT = {
   title: "Sarah & Marco's Wedding",
   description: "The big day! From the ceremony to the last dance — every angle matters. Share your favorite moments with us.",
   status: "active" as const,
-  event_code: "DEMO12",
+  event_code: "WED-7X9K",
 };
 
 type Photo = { id: string; storage_url: string; uploader_name: string; caption?: string };
@@ -60,51 +60,6 @@ const INITIAL_PHOTOS: Photo[] = [
 const MAX_UPLOADS = 4;
 
 const breakpointCols = { default: 3, 1100: 3, 700: 2, 500: 2 };
-
-function PhoneFrame({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      {/* Desktop: iPhone 16 Pro Max frame */}
-      <div className="hidden md:flex justify-center items-center min-h-screen bg-[#e5e5e5] p-6">
-        {/* Side buttons left */}
-        <div className="relative">
-          <div className="absolute -left-[3px] top-32 w-[3px] h-7 bg-[#2a2a2c] rounded-l" />
-          <div className="absolute -left-[3px] top-44 w-[3px] h-14 bg-[#2a2a2c] rounded-l" />
-          <div className="absolute -left-[3px] top-60 w-[3px] h-14 bg-[#2a2a2c] rounded-l" />
-          {/* Side button right */}
-          <div className="absolute -right-[3px] top-40 w-[3px] h-20 bg-[#2a2a2c] rounded-r" />
-
-          {/* Phone shell — transform creates containing block for fixed children */}
-          <div className="relative w-[430px] h-[932px] rounded-[55px] border-[14px] border-[#1c1c1e] overflow-hidden shadow-[0_0_0_2px_#3a3a3c,0_25px_50px_-12px_rgba(0,0,0,0.5)] bg-[#1c1c1e] transform">
-            {/* Status bar */}
-            <div className="absolute top-0 left-0 right-0 h-12 z-[60] flex items-end justify-between px-8 pb-2 pointer-events-none select-none">
-              <span className="text-[11px] font-semibold text-white/80">9:41</span>
-              <div className="flex items-center gap-1">
-                <svg width="14" height="9" viewBox="0 0 14 9" fill="none"><rect width="14" height="9" rx="2" fill="white" fillOpacity="0.6"/><rect x="1.5" y="1.5" width="11" height="6" rx="1" fill="#1c1c1e"/></svg>
-              </div>
-            </div>
-
-            {/* Screen */}
-            <div className="h-full w-full overflow-y-auto overflow-x-hidden bg-[#FAFAFA] relative pt-12">
-              {children}
-            </div>
-
-            {/* Dynamic Island */}
-            <div className="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-8 bg-black rounded-full z-[70] pointer-events-none" />
-
-            {/* Home indicator */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-36 h-1.5 bg-white/20 rounded-full z-[70] pointer-events-none" />
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile: render as-is */}
-      <div className="md:hidden">
-        {children}
-      </div>
-    </>
-  );
-}
 
 export default function TestGalleryPage() {
   const [photos, setPhotos] = useState(INITIAL_PHOTOS);
@@ -217,30 +172,7 @@ export default function TestGalleryPage() {
   };
 
   return (
-    <PhoneFrame>
-      <div className="min-h-screen bg-[#FAFAFA] text-[#1F2937] pb-28">
-      {/* Demo Alert — bottom snackbar */}
-      <AnimatePresence>
-        {showDemoNotice && (
-          <motion.div
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 40, opacity: 0 }}
-            className="fixed bottom-24 left-4 right-4 z-50 max-w-sm mx-auto"
-          >
-            <div className="bg-[#1F2937] text-white rounded-2xl px-4 py-3 shadow-xl shadow-black/20 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-2 text-xs leading-relaxed">
-                <Info size={14} className="text-[#C9A84C] flex-shrink-0" />
-                <span>This is a demo — experience what your guests will see</span>
-              </div>
-              <button onClick={() => setShowDemoNotice(false)} className="text-white/40 hover:text-white flex-shrink-0">
-                <X size={14} />
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
+    <div className="min-h-screen bg-[#FAFAFA] text-[#1F2937] pb-28">
       {/* Compact Header — visible when scrolled */}
       <AnimatePresence>
         {scrolled && (
@@ -251,7 +183,7 @@ export default function TestGalleryPage() {
             transition={{ duration: 0.25 }}
             className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[#E5E7EB]"
           >
-            <div className="px-4 h-12 flex items-center justify-between">
+            <div className="max-w-5xl mx-auto px-4 sm:px-8 h-12 flex items-center justify-between">
               <h2 className="font-serif text-sm font-bold text-[#1F2937] truncate max-w-[60%]">
                 {DEMO_EVENT.title}
               </h2>
@@ -261,8 +193,31 @@ export default function TestGalleryPage() {
         )}
       </AnimatePresence>
 
+      <div className="max-w-5xl mx-auto px-4 sm:px-8">
+        {/* Demo Alert — top banner */}
+        <AnimatePresence>
+          {showDemoNotice && (
+            <motion.div
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -20, opacity: 0 }}
+              className="pt-6"
+            >
+              <div className="bg-[#1F2937] text-white rounded-2xl px-4 py-3.5 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2.5 text-sm leading-relaxed">
+                  <Sparkles size={16} className="text-[#C9A84C] flex-shrink-0" />
+                  <span>Try it out — upload a photo to see how your guests will experience your gallery</span>
+                </div>
+                <button onClick={() => setShowDemoNotice(false)} className="text-white/40 hover:text-white flex-shrink-0">
+                  <X size={14} />
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
       {/* Back to home */}
-      <div className="px-4 pt-6">
+      <div className="pt-6">
         <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-[#9CA3AF] hover:text-[#1F2937] transition-colors">
           <ArrowLeft size={14} />
           Back to home
@@ -270,7 +225,7 @@ export default function TestGalleryPage() {
       </div>
 
       {/* Event Title */}
-      <div className="px-4 pt-6 pb-4 text-center">
+      <div className="pt-6 pb-4 text-center">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FDF6E3] border border-[#F0E6CC] text-[#C9A84C] text-xs font-medium tracking-wider uppercase mb-3">
           DEMO · {DEMO_EVENT.event_code}
         </div>
@@ -286,7 +241,7 @@ export default function TestGalleryPage() {
       </div>
 
       {/* Gallery */}
-      <div className="px-2 sm:px-4 py-4">
+      <div className="-mx-4 sm:-mx-8 py-4">
         <Masonry
           breakpointCols={breakpointCols}
           className="flex gap-2 sm:gap-3"
@@ -600,6 +555,6 @@ export default function TestGalleryPage() {
         </div>
       </footer>
     </div>
-    </PhoneFrame>
+    </div>
   );
 }

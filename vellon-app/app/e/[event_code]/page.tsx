@@ -2,6 +2,8 @@ import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import { GuestGalleryClient } from "./GuestGalleryClient";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: Promise<{ event_code: string }>;
 }

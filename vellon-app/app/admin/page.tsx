@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/Badge";
 import { FadeIn, StaggerContainer, StaggerItem } from "@/components/ui/FadeIn";
 import { CheckCircle, Clock, ExternalLink } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminQueuePage() {
   const supabase = await createClient();
 

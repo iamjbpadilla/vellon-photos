@@ -6,6 +6,8 @@ import { EventSettingsForm } from "@/components/dashboard/EventSettingsForm";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: Promise<{ id: string }>;
 }

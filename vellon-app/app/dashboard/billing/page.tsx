@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { Receipt, ExternalLink } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export default async function BillingPage() {
   const supabase = await createClient();
 

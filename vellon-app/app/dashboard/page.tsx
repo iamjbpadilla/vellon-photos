@@ -8,6 +8,8 @@ import {
   Plus, Camera, Clock, ExternalLink, QrCode, AlertTriangle, Sparkles,
 } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 function formatExpiry(expiresAt: string | null): string {
   if (!expiresAt) return "No expiry set";
   const diff = new Date(expiresAt).getTime() - Date.now();

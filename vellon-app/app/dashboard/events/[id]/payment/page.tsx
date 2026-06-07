@@ -4,6 +4,8 @@ import Link from "next/link";
 import { PaymentUploader } from "@/components/dashboard/PaymentUploader";
 import { ArrowLeft } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 interface Props {
   params: Promise<{ id: string }>;
 }

@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "rootDirectory": "vellon-app",
+  "crons": [
+    {
+      "path": "/api/cron/lifecycle",
+      "schedule": "0 3 * * *"
+    }
+  ]
+}

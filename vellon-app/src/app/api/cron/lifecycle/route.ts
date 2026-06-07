@@ -2,14 +2,15 @@ import { createClient } from '@/lib/supabase/server'
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function GET(request: Request) {
   // Verify cron secret
   const authHeader = request.headers.get('authorization')
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
+
+  // Initialize Resend lazily to avoid build-time errors
+  const resend = new Resend(process.env.RESEND_API_KEY || '')
 
   const supabase = await createClient()
 

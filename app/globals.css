@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+:root {
+  --foreground: #f1f5f9;
+}
+
+body {
+  color: var(--foreground);
+  font-family: system-ui, sans-serif;
+}
+
+.font-serif {
+  font-family: var(--font-playfair), Georgia, serif;
+}
